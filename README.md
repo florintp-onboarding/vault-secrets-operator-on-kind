@@ -12,9 +12,9 @@
 
 ### Prerequisites :
 
-  - Having Kind installed and configured: (Kind Tool)[https://kind.sigs.k8s.io/]
-  - Having HELM package manager installed: (HELM package manager)[https://helm.sh/]
-  - JQ utility: JQ Command-line JSON processor: (JQ)[https://jqlang.github.io/jq/]
+  - Having Kind installed and configured: [Kind Tool](https://kind.sigs.k8s.io/)
+  - Having HELM package manager installed: [HELM package manager](https://helm.sh/)
+  - JQ utility: JQ Command-line JSON processor: [JQ](https://jqlang.github.io/jq/)
   - A valid Vault license
 
 ### Guidance and articles followed :
@@ -22,18 +22,18 @@
    This repo is used as hands-on experience for using Vault Secrets Operator to sync Kubernetes secrets from different secret mounts.
    The repo is built following the guidance:
 
-   - (Vault Secrets Operator on Kubernetes)[https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator]
-   - (Vault Database Secrets Engine)[https://developer.hashicorp.com/vault/tutorials/db-credentials/database-secrets]
-   - (Vault LDAP Secrets Engine)[https://developer.hashicorp.com/vault/tutorials/secrets-management/openldap]
+   - [Vault Secrets Operator on Kubernetes](https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator)
+   - [Vault Database Secrets Engine](https://developer.hashicorp.com/vault/tutorials/db-credentials/database-secrets)
+   - [Vault LDAP Secrets Engine](https://developer.hashicorp.com/vault/tutorials/secrets-management/openldap)
 
 ### Usage :
 
   - Clone the repository : `git clone https://github.com/florintp-onboarding/vault-secrets-operator-on-kind.git`.
   - Change into its directory : `cd vault-secrets-operator-on-kind`.
   - Put your Vault enterprise license in a file named `vault_license.hclic` in the root directory of this project.
-  - Choose the desired version TAG of Vault Enterprise according to GA from (Vault Docker Enterprise TAGS)[https://hub.docker.com/r/hashicorp/vault-enterprise/tags]
-  - Change the ownership of the setup.sh file `chmod +urx setup.sh`
-  - Execute the all in one script `bash setup.sh` and check the PODs and the secrets
+  - Choose the desired version TAG of Vault Enterprise according to GA from [Vault Docker Enterprise TAGS](https://hub.docker.com/r/hashicorp/vault-enterprise/tags)
+  - Change the ownership of the setup.sh file `chmod u+rx setup.sh`
+  - Execute the all in one script `bash setup.sh` and check the deployed PODs and the secrets created.
   - Possible output is attached below.
 
 
@@ -43,6 +43,7 @@ chmod u+rx clean.sh
 sh clean.sh
 ````
 
+###  Scritps to monitor and observe the secrets and PODs state
 - Initialize the VAULT_TOKEN variable
 ````
 unset VAULT_TOKEN

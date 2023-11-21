@@ -47,7 +47,7 @@
 │   ├── vault-auth-static.yaml
 │   ├── vault-operator-values.yaml
 │   └── vault-values.yaml
-└── vault_license.hclic -> /Users/florin.tiucra-popa/Documents/999-backup/vault_license.hlic
+└── vault_license.hclic
   ````
   Each of the child scripts may be executed independently for debug purposes.
   Vault cluster deployed is a 5 nodes Vault having as storage backend RAFT into a specific namespace `vault`. 

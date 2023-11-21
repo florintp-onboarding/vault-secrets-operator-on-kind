@@ -10,6 +10,48 @@
   This project `vault-secrets-operator-on-kind` creates a Kind Kubernetes Cluster (kind1) and configures Vault Secrets Operator to sync the secrets.
   Vault Secrets Operator with static and dynamic secrets hands-on KV-V2 secrets, POSTGRES dynamic secrets, LDAP static secrets.
   
+  The main script (`setup.sh`) will create a Kind cluster (`kind1`) and call the modules for:
+  -  deploy and confgure Vault (`setup_vault.sh`),
+  -  deploy and configure POSTGRES (`setup_postgres.sh`),
+  -  deploy and configure LDAP (OpenLDAP) (`setup_ldap.sh`),
+  -  and deploy and configure VSO (`setup_vs.sh`).
+
+  The structure may look similar to the tree image from below.
+````
+├── clean.sh
+├── dynamic-secrets
+│   ├── app-deployment.yaml
+│   ├── app-secret.yaml
+│   ├── vault-auth-dynamic.yaml
+│   ├── vault-auth-operator.yaml
+│   ├── vault-dynamic-secret-create.yaml
+│   ├── vault-dynamic-secret.yaml
+│   └── vault-operator-sa.yaml
+├── ldap
+│   ├── simple-deployment.yaml
+│   └── simple-svc.yaml
+├── postgres
+│   ├── db-deployment.yaml
+│   ├── db-secrets-configmap.yaml
+│   ├── db-service.yaml
+│   └── pv-claim.yaml
+├── setup.sh
+├── setup_ldap.sh
+├── setup_postgres.sh
+├── setup_vault.sh
+├── setup_vso.sh
+├── vault
+│   ├── static-secret.yaml
+│   ├── template_values.yaml
+│   ├── values.yaml
+│   ├── vault-auth-static.yaml
+│   ├── vault-operator-values.yaml
+│   └── vault-values.yaml
+└── vault_license.hclic -> /Users/florin.tiucra-popa/Documents/999-backup/vault_license.hlic
+  ````
+  Each of the child scripts may be executed independently for debug purposes.
+  Vault cluster deployed is a 5 nodes Vault having as storage backend RAFT into a specific namespace `vault`. 
+  
 
 ### Prerequisites :
 

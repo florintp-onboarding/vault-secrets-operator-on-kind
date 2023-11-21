@@ -33,15 +33,15 @@ server:
       memory: 8Gi
       cpu: 2000m
      # Overrides the default Image Pull Policy
-    pullPolicy: IfNotPresent
-    dataStorage:
-      enabled: true
-      size: 10Gi
-      storageClass: standard
-    auditStorage:
-      enabled: true
-      size: 10Gi
-      storageClass: standard      
+     #    pullPolicy: IfNotPresent
+     #    dataStorage:
+     #      enabled: true
+     #      size: 10Gi
+     #      storageClass: standard
+     #    auditStorage:
+     #      enabled: true
+     #      size: 10Gi
+     #      storageClass: standard      
 
   # Configure the Update Strategy Type for the StatefulSet
   # See https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies

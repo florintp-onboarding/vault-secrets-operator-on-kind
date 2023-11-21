@@ -16,15 +16,23 @@ nodes:
 EOF
 
 kind create cluster --name=kind1 --config=workers.yaml
-kubectl get nodes
-kind get clusters
+#kubectl get nodes
+#kind get clusters
 kubectl cluster-info --context kind-kind1
 
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo update
+
 kubectl create namespace vault
+chmod u+rx setup_vault.sh
 bash  setup_vault.sh
+
+chmod u+rx setup_postgres.sh
 bash  setup_postgres.sh
+
+chmod u+rx setup_ldap.sh
 bash  setup_ldap.sh
+
+chmod u+rx setup_vso.sh
 bash  setup_vso.sh
 

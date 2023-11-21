@@ -1,7 +1,43 @@
-# vault-secrets-operator-on-kind
-Vault Secrets Operator with static and dynamic secrets hands-on 
+## Simple PoC project `vault-secrets-operator-on-kind` that creates a Kind Kubernetes Cluster and configures Vault Secrets Operator to sync the secrets.
 
-- Clean up infrastructure (KIND)
+-----
+
+![Vault Logo](https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png)
+
+
+### What is it : 
+
+  This project `vault-secrets-operator-on-kind` creates a Kind Kubernetes Cluster (kind1) and configures Vault Secrets Operator to sync the secrets.
+  Vault Secrets Operator with static and dynamic secrets hands-on 
+
+### Prerequisites :
+
+  - Having Kind installed and configured: (Kind Tool)[https://kind.sigs.k8s.io/]
+  - Having HELM package manager installed: (HELM package manager)[https://helm.sh/]
+  - JQ utility: JQ Command-line JSON processor: (JQ)[https://jqlang.github.io/jq/]
+  - A valid Vault license
+
+### Guidance and articles followed :
+
+   This repo is used as hands-on experience for using Vault Secrets Operator to sync Kubernetes secrets from different secret mounts.
+   The repo is built following the guidance:
+
+   - (Vault Secrets Operator on Kubernetes)[https://developer.hashicorp.com/vault/tutorials/kubernetes/vault-secrets-operator]
+   - (Vault Database Secrets Engine)[https://developer.hashicorp.com/vault/tutorials/db-credentials/database-secrets]
+   - (Vault LDAP Secrets Engine)[https://developer.hashicorp.com/vault/tutorials/secrets-management/openldap]
+
+### Usage :
+
+  - Clone the repository : `git clone https://github.com/florintp-onboarding/vault-secrets-operator-on-kind.git`.
+  - Change into its directory : `cd vault-secrets-operator-on-kind`.
+  - Put your Vault enterprise license in a file named `vault_license.hclic` in the root directory of this project.
+  - Choose the desired version TAG of Vault Enterprise according to GA from (Vault Docker Enterprise TAGS)[https://hub.docker.com/r/hashicorp/vault-enterprise/tags]
+  - Change the ownership of the setup.sh file `chmod +urx setup.sh`
+  - Execute the all in one script `bash setup.sh` and check the PODs and the secrets
+  - Possible output is attached below.
+
+
+###  Clean up infrastructure (KIND)
 ````
 chmod u+rx clean.sh
 sh clean.sh
@@ -41,4 +77,69 @@ done
 - Get all the PODs
 ````
 kubectl get pods -A
+````
+
+### Possible Ouptut :
+
+````
+bash setup.sh
+Error: no repo named "hashicorp" found
+Deleted clusters: ["kind1"]
+Creating cluster "kind1" ...
+ ✓ Ensuring node image (kindest/node:v1.27.3) 🖼
+ ✓ Preparing nodes 📦 📦 📦
+ ✓ Writing configuration 📜
+ ✓ Starting control-plane 🕹️
+ ✓ Installing CNI 🔌
+ ✓ Installing StorageClass 💾
+ ✓ Joining worker nodes 🚜
+Set kubectl context to "kind-kind1"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-kind1
+
+Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/#community 🙂
+Kubernetes control plane is running at https://127.0.0.1:54158
+CoreDNS is running at https://127.0.0.1:54158/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+"hashicorp" has been added to your repositories
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "aws-ebs-csi-driver" chart repository
+...Successfully got an update from the "hashicorp" chart repository
+...Successfully got an update from the "bitnami" chart repository
+Update Complete. ⎈Happy Helming!⎈
+namespace/vault created
+# Adding Vault HELM repo."hashicorp" already exists with the same configuration, skipping
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "aws-ebs-csi-driver" chart repository
+...Successfully got an update from the "hashicorp" chart repository
+...Successfully got an update from the "bitnami" chart repository
+Update Complete. ⎈Happy Helming!⎈
+namespace "vault" deleted
+namespace/vault created
+# Deploying Vault HELM CHART  with 5 nodes.W1121 10:40:57.231883   78963 warnings.go:70] unknown field "spec.template.spec.containers[0].resources.auditStorage"
+W1121 10:40:57.231906   78963 warnings.go:70] unknown field "spec.template.spec.containers[0].resources.dataStorage"
+W1121 10:40:57.231909   78963 warnings.go:70] unknown field "spec.template.spec.containers[0].resources.pullPolicy"
+NAME: vault
+LAST DEPLOYED: Tue Nov 21 10:40:56 2023
+NAMESPACE: vault
+STATUS: deployed
+REVISION: 1
+NOTES:
+Thank you for installing HashiCorp Vault!
+
+Now that you have deployed Vault, you should look over the docs on using
+Vault with Kubernetes available here:
+
+https://developer.hashicorp.com/vault/docs
+
+
+Your release is named vault. To learn more about the release, try:
+
+  $ helm status vault
+  $ helm get manifest vault
+
+# Waiting for all Vault PODs to reach the Running state
+|
 ````

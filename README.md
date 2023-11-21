@@ -40,7 +40,7 @@
 ###  Clean up infrastructure (KIND)
 ````
 chmod u+rx clean.sh
-sh clean.sh
+bash clean.sh
 ````
 
 ###  Scritps to monitor and observe the secrets and PODs state
@@ -50,9 +50,12 @@ unset VAULT_TOKEN
 export V_TOKEN=$(cat init-keys.json|jq -r '.root_token')
 ````
 
-- Watching the PODs state changes
+- Watching the PODs state changes and keep the history into state_pods.txt
 ````
-while : ; do sleep 2 ;kubectl get pods -A -o json  | jq -r '.items[] | select(.status.phase != "Running" or ([ .status.conditions[] | select(.type == "Ready" and .status == "False") ] | length ) == 1 ) | .metadata.namespace + "/" + .metadata.name + " " + .status.phase + " " + .metadata.creationTimestamp' |tee -a state.txt;  done
+while : ; do
+  sleep 1
+  kubectl get pods -A -o json  | jq -r '.items[] | select(.status.phase != "Running" or ([ .status.conditions[] | select(.type == "Ready" and .status == "False") ] | length ) == 1 ) | .metadata.namespace + "/" + .metadata.name + " " + .status.phase + " " + .metadata.creationTimestamp' |tee -a state_pods.txt
+done
 ````
 
 - Watching the KV-V2 secret sync in APP namespace

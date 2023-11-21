@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: postgres
+spec:
+  # Having more replicas is not supported as every pod will mount its own data
+  # replicas: 3
+  replicas: 1
+  selector:
+    # labels the pods
+    matchLabels:
+      app: postgresdb
+  template:
+    metadata:
+      labels:
+        # The label the pods created from the pod template should have
+        app: postgresdb
+    spec:
+      containers:
+        # The container name to execute pods
+        - name: postgres
+          # pull postgresimage from docker hub
+          image: postgres
+          ports:
+            # Assign ports to expose container
+            - containerPort: 5432
+          envFrom:
+            # Load the environment variables/PostgresSQL credentials
+            - configMapRef:
+                # This should be the ConfigMap name created ealier
+                name: db-secret-credentials
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            # reference the PersistentVolumeClaim
+            claimName: db-persistent-volume-claim

@@ -14,7 +14,7 @@
   -  deploy and confgure Vault (`setup_vault.sh`),
   -  deploy and configure POSTGRES (`setup_postgres.sh`),
   -  deploy and configure LDAP (OpenLDAP) (`setup_ldap.sh`),
-  -  and deploy and configure VSO (`setup_vs.sh`).
+  -  and deploy and configure VSO (`setup_vso.sh`).
 
   The structure may look similar to the tree image from below.
 ````

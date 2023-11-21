@@ -8,7 +8,8 @@
 ### What is it : 
 
   This project `vault-secrets-operator-on-kind` creates a Kind Kubernetes Cluster (kind1) and configures Vault Secrets Operator to sync the secrets.
-  Vault Secrets Operator with static and dynamic secrets hands-on 
+  Vault Secrets Operator with static and dynamic secrets hands-on KV-V2 secrets, POSTGRES dynamic secrets, LDAP static secrets.
+  
 
 ### Prerequisites :
 
@@ -31,7 +32,7 @@
   - Clone the repository : `git clone https://github.com/florintp-onboarding/vault-secrets-operator-on-kind.git`.
   - Change into its directory : `cd vault-secrets-operator-on-kind`.
   - Put your Vault enterprise license in a file named `vault_license.hclic` in the root directory of this project.
-  - Choose the desired version TAG of Vault Enterprise according to GA from [Vault Docker Enterprise TAGS](https://hub.docker.com/r/hashicorp/vault-enterprise/tags)
+  - Choose the desired version TAG of Vault Enterprise according to GA from [Vault Docker Enterprise TAGS](https://hub.docker.com/r/hashicorp/vault-enterprise/tags) in `vault/values.yaml`
   - Change the ownership of the setup.sh file `chmod u+rx setup.sh`
   - Execute the all in one script `bash setup.sh` and check the deployed PODs and the secrets created.
   - Possible output is attached below.
